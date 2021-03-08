@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_porfolio/screens/screens.dart';
+import 'package:flutter_porfolio/theme/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_porfolio/bloc/blocs.dart';
 
 void main() {
-  runApp(App());
+  runApp(BlocProvider<ThemeBloc>(create: (_) => ThemeBloc(), child: App()));
 }
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Infinite Scroll',
-      home: Scaffold(
-        body: HomeScreen(),
-      ),
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (context, state) {
+        return MaterialApp(
+          title: 'Flutter Porfolio',
+          themeMode: state.themeMode,
+          theme: lightTheme(),
+          darkTheme: darkTheme(),
+          home: Scaffold(
+            body: HomeScreen(),
+          ),
+        );
+      }
     );
   }
 }
