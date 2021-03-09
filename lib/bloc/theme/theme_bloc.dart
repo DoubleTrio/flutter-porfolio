@@ -1,10 +1,12 @@
+import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'theme.dart';
 import 'package:bloc/bloc.dart';
 
 
-class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
+class ThemeBloc extends HydratedBloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(ThemeState(ThemeMode.light));
 
   @override
@@ -19,5 +21,15 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   Stream<ThemeState> _mapThemeChangedToState() async* {
     final appTheme = state.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     yield ThemeState(appTheme);
+  }
+
+  @override
+  ThemeState fromJson(Map<String, dynamic> json) {
+    return ThemeState(ThemeMode.values[json['themeMode'] as int]);
+  }
+
+  @override
+  Map<String, dynamic> toJson(ThemeState state) {
+    return <String, int>{'themeMode': state.themeMode.index };
   }
 }

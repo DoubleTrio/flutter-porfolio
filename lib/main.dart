@@ -21,6 +21,7 @@ class App extends StatelessWidget {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Flutter Porfolio',
           themeMode: state.themeMode,
           theme: lightTheme,
