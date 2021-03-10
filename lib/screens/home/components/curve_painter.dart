@@ -6,12 +6,11 @@ class CurvePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-
     Paint paint = Paint();
     paint.color = backgroundColor;
     paint.style = PaintingStyle.fill;
 
-    var path = Path();
+    Path path = Path();
 
     path.moveTo(0, size.height * 0.9167);
     path.quadraticBezierTo(size.width * 0.25, size.height * 0.875,

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_porfolio/screens/home/components/drawer_bar.dart';
 import 'components/components.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,21 +12,21 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
         width: double.infinity,
+        height: double.infinity,
           child: CustomPaint(
             painter: CurvePainter(backgroundColor: theme.backgroundColor),
-            child:  Column(
-              children: [
-                Text("Hi", style: theme.textTheme.headline3),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/building.jpg'),
-                      radius: 60
-                  ),
-                ),
-                Text("Photo by Florian Wehde on Unsplash", style: theme.textTheme.bodyText2),
-              ],
-            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  DrawerBar(),
+                  CircleAvatar(backgroundImage: AssetImage("assets/images/pfp.png"), radius: 70),
+                  NameHeader(),
+                  ProfileDescription(),
+                ],
+              ),
+            )
           ),
       )),
     );
