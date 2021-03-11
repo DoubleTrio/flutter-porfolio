@@ -8,10 +8,10 @@ class NameHeader extends StatelessWidget {
       textAlign: TextAlign.center,
       text: TextSpan(
         text: "< ",
-        style: theme.textTheme.bodyText2?.copyWith(color: theme.accentColor),
+        style: theme.textTheme.headline5?.copyWith(color: theme.accentColor),
         children: <TextSpan>[
-          TextSpan(text: "Kace", style: theme.textTheme.headline6),
-          TextSpan(text: " >", style: theme.textTheme.bodyText2?.copyWith(color: theme.accentColor)),
+          TextSpan(text: "Kacey", style: theme.textTheme.headline4),
+          TextSpan(text: " >", style: theme.textTheme.headline5?.copyWith(color: theme.accentColor)),
         ]
       )
     );

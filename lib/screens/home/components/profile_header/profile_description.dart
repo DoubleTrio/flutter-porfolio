@@ -13,26 +13,26 @@ class ProfileDescription extends StatelessWidget {
                 textAlign: TextAlign.center,
                 text: TextSpan(
                   text: "A ",
-                  style: theme.textTheme.bodyText2,
+                  style: theme.textTheme.headline6,
                   children: <TextSpan>[
                     TextSpan(
                         text: "Flutter",
-                        style: theme.textTheme.bodyText2?.copyWith(
+                        style: theme.textTheme.headline6?.copyWith(
                             decoration: TextDecoration.underline,
                             decorationColor: theme.primaryColor,
                             decorationThickness: 2.5
                         )
                     ),
-                    TextSpan(text: " developer learning the ropes while making ", style: theme.textTheme.bodyText2),
+                    TextSpan(text: " developer learning the ropes and making ", style: theme.textTheme.headline6),
                     TextSpan(
                         text: "knots",
-                        style: theme.textTheme.bodyText2?.copyWith(
+                        style: theme.textTheme.headline6?.copyWith(
                             decoration: TextDecoration.underline,
                             decorationColor: theme.accentColor,
                             decorationThickness: 2.5
                         )
                       ),
-                    TextSpan(text: " on the way", style: theme.textTheme.bodyText2),
+                    TextSpan(text: " on the way", style: theme.textTheme.headline6),
                   ]
                 )
               ),
