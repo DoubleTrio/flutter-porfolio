@@ -24,7 +24,7 @@ ThemeData lightTheme = ThemeData(
   iconTheme: IconThemeData(color: darkScaffold.withAlpha(200), size: 30),
   primaryColor: lightPrimaryColor,
   scaffoldBackgroundColor: lightScaffold,
-  backgroundColor: Colors.black12.withAlpha(15),
+  backgroundColor: Colors.black12.withAlpha(20),
   brightness: Brightness.light,
   accentColor: Colors.orange
 );

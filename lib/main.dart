@@ -4,6 +4,7 @@ import 'package:flutter_porfolio/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_porfolio/bloc/blocs.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
@@ -26,9 +27,16 @@ class App extends StatelessWidget {
           themeMode: state.themeMode,
           theme: lightTheme,
           darkTheme: darkTheme,
-          home: Scaffold(
-            body: HomeScreen(),
-          ),
+          home: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: state.themeMode == ThemeMode.dark ? Brightness.light : Brightness.dark,
+              systemNavigationBarIconBrightness: Brightness.dark,
+            ),
+            child:  Scaffold(
+              body: HomeScreen(),
+            ),
+          )
         );
       }
     );
