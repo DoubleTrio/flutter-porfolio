@@ -12,7 +12,7 @@ class DrawerBar extends StatelessWidget {
             color: Theme.of(context).iconTheme.color,
             size: 35
           ),
-          onPressed: () { print("open drawer"); }
+          onPressed: () => Scaffold.of(context).openEndDrawer(),
         )
       ]
     );

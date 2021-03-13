@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-Color darkScaffold = Color(0xFF111111).withAlpha(200);
-Color lightScaffold = Colors.white.withAlpha(230);
+Color darkScaffold = Color(0xFF111111).withAlpha(255);
+Color lightScaffold = Color(0xFFF5F5F5).withAlpha(255);
 Color lightPrimaryColor = Colors.deepPurpleAccent;
 Color darkPrimaryColor = Colors.cyanAccent;
 
@@ -26,7 +26,8 @@ ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: lightScaffold,
   backgroundColor: Colors.black12.withAlpha(20),
   brightness: Brightness.light,
-  accentColor: Colors.orange
+  accentColor: Colors.orange,
+  bottomAppBarColor: Color(0xFFEBEBEB),
 );
 
 ThemeData darkTheme = ThemeData(
@@ -50,5 +51,6 @@ ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: darkScaffold,
   backgroundColor: Colors.white10.withAlpha(12),
   brightness: Brightness.dark,
-  accentColor: Colors.redAccent
+  accentColor: Colors.redAccent,
+  bottomAppBarColor: Color(0x99171717),
 );
