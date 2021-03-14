@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_porfolio/screens/home/components/project_body/card_scroll_list.dart';
+import 'package:flutter_porfolio/screens/home/components/work_body/card_scroll_list.dart';
 import 'package:flutter_porfolio/models/models.dart';
 import 'project_header.dart';
 
