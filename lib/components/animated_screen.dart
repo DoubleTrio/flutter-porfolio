@@ -68,40 +68,29 @@ class _AnimatedScreenState extends State<AnimatedScreen>
     double xOffset = animationValue * widget.xOffset;
     double yOffset = animationValue * widget.yOffset;
 
-    return BlocListener<DrawerBloc, DrawerState>(
-      listener: (context, state) {
-        if (state is DrawerOpen) {
-          openDrawer();
-        }
-
-        if (state is DrawerScreenSet) {
-          closerDrawer();
-        }
-      },
-      child: GestureDetector(
-        onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(widget.id)),
-        child: AnimatedBuilder(
-            animation: animationController,
-            builder: (context, _) {
-              final opacity = (animationValue * 255).toInt();
-              return Transform(
-                alignment: Alignment.centerRight,
-                transform: Matrix4.identity()
-                  ..scale(scale)
-                  ..rotateZ(rotationZ)
-                  ..translate(xOffset, yOffset),
-                child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: theme.primaryColor.withAlpha(opacity),
-                        width: 1
-                      )
-                    ),
-                    child: widget.child
-                ),
-              );
-            }),
-      ),
+    return GestureDetector(
+      onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(widget.id)),
+      child: AnimatedBuilder(
+          animation: animationController,
+          builder: (context, _) {
+            final opacity = (animationValue * 255).toInt();
+            return Transform(
+              alignment: Alignment.centerRight,
+              transform: Matrix4.identity()
+                ..scale(scale)
+                ..rotateZ(rotationZ)
+                ..translate(xOffset, yOffset),
+              child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: theme.primaryColor.withAlpha(opacity),
+                      width: 1
+                    )
+                  ),
+                  child: widget.child
+              ),
+            );
+          }),
     );
   }
 }
