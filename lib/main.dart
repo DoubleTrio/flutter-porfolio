@@ -33,8 +33,11 @@ class App extends StatelessWidget {
               statusBarIconBrightness: state.themeMode == ThemeMode.dark ? Brightness.light : Brightness.dark,
               systemNavigationBarIconBrightness: Brightness.dark,
             ),
-            child:  Scaffold(
-              body: HomeScreen(),
+            child: Scaffold(
+              body: BlocProvider<DrawerBloc>(
+                create: (_) => DrawerBloc()..add(DrawerScreenSetted(0)),
+                child: HomeScreen(),
+              )
             ),
           )
         );

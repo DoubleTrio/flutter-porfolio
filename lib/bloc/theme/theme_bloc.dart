@@ -1,3 +1,4 @@
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -9,8 +10,8 @@ class ThemeBloc extends HydratedBloc<ThemeEvent, ThemeState> {
 
   @override
   Stream<ThemeState> mapEventToState(
-    ThemeEvent event,
-  ) async* {
+      ThemeEvent event,
+      ) async* {
     if (event is ThemeChanged) {
       yield* _mapThemeChangedToState();
     }

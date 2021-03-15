@@ -1,57 +1,106 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_porfolio/bloc/blocs.dart';
 
 class AnimatedScreen extends StatefulWidget {
-  final Widget child;
-  final AnimationController animationController;
-  final double animationScreenRotation;
   final Key? key;
-  final VoidCallback? onPress;
+  final Widget child;
+  final int id;
+  final double animationScreenRotation;
   final double animationScreenScale;
   final double xOffset;
   final double yOffset;
 
   AnimatedScreen({
     required this.child,
-    required this.animationController,
+    required this.id,
     required this.animationScreenRotation,
     this.key,
-    this.onPress,
     this.animationScreenScale = 0.5,
     this.xOffset = 0,
     this.yOffset = 0,
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
   _AnimatedScreenState createState() => _AnimatedScreenState();
 }
 
-class _AnimatedScreenState extends State<AnimatedScreen> with SingleTickerProviderStateMixin {
+class _AnimatedScreenState extends State<AnimatedScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  int selectedScreenId = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(duration: const Duration(seconds: 0, milliseconds: 500), vsync: this);
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  bool isDrawerClosed() {
+    return animationController.isDismissed;
+  }
+
+  void openDrawer() {
+    if (isDrawerClosed()) {
+      animationController.forward();
+    }
+  }
+
+  void closerDrawer() {
+    if (!isDrawerClosed()) {
+      animationController.reverse();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    AnimationController animationController = widget.animationController;
-    return GestureDetector(
-      onTap: widget.onPress,
-      child: AnimatedBuilder(
-          animation: animationController,
-          builder: (context, _) {
-            return Transform(
-              alignment: Alignment.centerRight,
-              transform: Matrix4.identity()
-                ..scale(1 - animationController.value * widget.animationScreenScale)
-                ..rotateZ(animationController.value * widget.animationScreenRotation)
-                ..translate(animationController.value * widget.xOffset, animationController.value * widget.yOffset),
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: theme.primaryColor.withAlpha((animationController.value * 255).round()),
-                    width: 1
-                  )
+
+    double animationValue = animationController.value;
+    double scale = 1 - animationValue * widget.animationScreenScale;
+    double rotationZ = animationValue * widget.animationScreenRotation;
+    double xOffset = animationValue * widget.xOffset;
+    double yOffset = animationValue * widget.yOffset;
+
+    return BlocListener<DrawerBloc, DrawerState>(
+      listener: (context, state) {
+        if (state is DrawerOpen) {
+          openDrawer();
+        }
+
+        if (state is DrawerScreenSet) {
+          closerDrawer();
+        }
+      },
+      child: GestureDetector(
+        onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(widget.id)),
+        child: AnimatedBuilder(
+            animation: animationController,
+            builder: (context, _) {
+              final opacity = (animationValue * 255).toInt();
+              return Transform(
+                alignment: Alignment.centerRight,
+                transform: Matrix4.identity()
+                  ..scale(scale)
+                  ..rotateZ(rotationZ)
+                  ..translate(xOffset, yOffset),
+                child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: theme.primaryColor.withAlpha(opacity),
+                        width: 1
+                      )
+                    ),
+                    child: widget.child
                 ),
-                child: widget.child
-              ),
-            );
-          }
+              );
+            }),
       ),
     );
   }
