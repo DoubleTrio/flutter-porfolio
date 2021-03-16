@@ -13,78 +13,42 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  final List<String> navHeaders = [
-    "Projects",
-    "Skills",
-    "Message Me",
-    "Social Media"
-  ];
 
 
-  // List<ScreenAnimationEntity> reorderStack(List<ScreenAnimationEntity> screenEntities, int index) {
-  //   ScreenAnimationEntity frontEntity = screenEntities.removeAt(index);
-  //   return [...screenEntities, frontEntity];
-  // }
+  List<AnimatedScreen> reorderStack(List<AnimatedScreen> screens, int index) {
+    AnimatedScreen frontScreen = screens.removeAt(index);
+    return [...screens, frontScreen];
+  }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final size = MediaQuery.of(context).size;
-    // screenAnimations = reorderStack(screenAnimations, selectedScreenId);
 
-    return Stack(
-      children: [
-        Row(
-          children: [
-            Expanded(child: Container(color: Colors.black54)),
-            Container(
-              color: theme.bottomAppBarColor,
-              width: size.width,
-              padding: EdgeInsets.all(12),
-              child: ListView.builder(
-                itemCount: navHeaders.length,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    splashColor: theme.accentColor,
-                    child: Container(
-                      padding: EdgeInsets.all(12),
-                      width: double.infinity,
-                      child: Text(navHeaders[index]),
-                    )
-                  );
-                }
-              ),
-            ),
-          ],
-        ),
-        AnimatedScreen(
-          id: 1,
-          key: Key("1"),
-          child: Scaffold(
-            floatingActionButton: ThemeActionButton(),
-            body: SafeArea(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    DrawerBar(),
-                    CircleAvatar(
-                        backgroundImage: AssetImage("assets/images/building.jpg"),
-                        radius: 70
-                    ),
-                    NameHeader(),
-                    ProfileDescription(),
-                    ProjectBody()
-                  ],
+    return AnimatedScreen(
+      id: 1,
+      key: Key("1"),
+      child: Scaffold(
+        floatingActionButton: ThemeActionButton(),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                DrawerBar(),
+                CircleAvatar(
+                    backgroundImage: AssetImage("assets/images/building.jpg"),
+                    radius: 70
                 ),
-              ),
+                NameHeader(),
+                ProfileDescription(),
+                ProjectBody()
+              ],
             ),
           ),
-          animationScreenRotation: -pi / 2.5,
-          xOffset: -200,
-          yOffset: -150,
-        )
-      ],
+        ),
+      ),
+      animationScreenRotation: -pi / 2.5,
+      xOffset: -200,
+      yOffset: -150,
     );
   }
 }

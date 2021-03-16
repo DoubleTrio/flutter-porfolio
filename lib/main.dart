@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_porfolio/screens/screens.dart';
+import 'package:flutter_porfolio/screens/screen_stack.dart';
 import 'package:flutter_porfolio/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_porfolio/bloc/blocs.dart';
@@ -36,7 +36,7 @@ class App extends StatelessWidget {
             child: Scaffold(
               body: BlocProvider<DrawerBloc>(
                 create: (_) => DrawerBloc()..add(DrawerScreenSetted(0)),
-                child: HomeScreen(),
+                child: ScreenStack(),
               )
             ),
           )

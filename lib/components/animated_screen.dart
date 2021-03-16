@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_porfolio/bloc/blocs.dart';
 
 class AnimatedScreen extends StatefulWidget {
-  final Key? key;
   final Widget child;
   final int id;
   final double animationScreenRotation;
@@ -11,11 +10,11 @@ class AnimatedScreen extends StatefulWidget {
   final double xOffset;
   final double yOffset;
 
-  AnimatedScreen({
+  const AnimatedScreen({
+    required Key key,
     required this.child,
     required this.id,
     required this.animationScreenRotation,
-    this.key,
     this.animationScreenScale = 0.5,
     this.xOffset = 0,
     this.yOffset = 0,
@@ -25,8 +24,7 @@ class AnimatedScreen extends StatefulWidget {
   _AnimatedScreenState createState() => _AnimatedScreenState();
 }
 
-class _AnimatedScreenState extends State<AnimatedScreen>
-    with SingleTickerProviderStateMixin {
+class _AnimatedScreenState extends State<AnimatedScreen> with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   int selectedScreenId = 1;
 
@@ -52,7 +50,7 @@ class _AnimatedScreenState extends State<AnimatedScreen>
     }
   }
 
-  void closerDrawer() {
+  void closeDrawer() {
     if (!isDrawerClosed()) {
       animationController.reverse();
     }
@@ -68,29 +66,40 @@ class _AnimatedScreenState extends State<AnimatedScreen>
     double xOffset = animationValue * widget.xOffset;
     double yOffset = animationValue * widget.yOffset;
 
-    return GestureDetector(
-      onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(widget.id)),
-      child: AnimatedBuilder(
-          animation: animationController,
-          builder: (context, _) {
-            final opacity = (animationValue * 255).toInt();
-            return Transform(
-              alignment: Alignment.centerRight,
-              transform: Matrix4.identity()
-                ..scale(scale)
-                ..rotateZ(rotationZ)
-                ..translate(xOffset, yOffset),
-              child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: theme.primaryColor.withAlpha(opacity),
-                      width: 1
-                    )
-                  ),
-                  child: widget.child
-              ),
-            );
+    return BlocListener<DrawerBloc, DrawerState>(
+      listener: (context, state) {
+        if (state is DrawerOpen) {
+          openDrawer();
+        }
+
+        if (state is DrawerScreenSet) {
+          closeDrawer();
+        }
+      },
+      child: GestureDetector(
+        onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(widget.id)),
+        child: AnimatedBuilder(
+            animation: animationController,
+            builder: (context, _) {
+              final opacity = (animationValue * 255).toInt();
+              return Transform(
+                alignment: Alignment.centerRight,
+                transform: Matrix4.identity()
+                  ..scale(scale)
+                  ..rotateZ(rotationZ)
+                  ..translate(xOffset, yOffset),
+                child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: theme.primaryColor.withAlpha(opacity),
+                        width: 1
+                      )
+                    ),
+                    child: widget.child
+                ),
+              );
           }),
+      ),
     );
   }
 }
