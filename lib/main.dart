@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_porfolio/screens/screens.dart';
+import 'package:flutter_porfolio/screens/screen_stack.dart';
 import 'package:flutter_porfolio/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_porfolio/bloc/blocs.dart';
@@ -33,8 +33,12 @@ class App extends StatelessWidget {
               statusBarIconBrightness: state.themeMode == ThemeMode.dark ? Brightness.light : Brightness.dark,
               systemNavigationBarIconBrightness: Brightness.dark,
             ),
-            child:  Scaffold(
-              body: HomeScreen(),
+            child: Scaffold(
+              key: Key("Scaffold1"),
+              body: BlocProvider<DrawerBloc>(
+                create: (_) => DrawerBloc(),
+                child: ScreenStack(),
+              )
             ),
           )
         );

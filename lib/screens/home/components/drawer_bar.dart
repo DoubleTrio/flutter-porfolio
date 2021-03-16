@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_porfolio/bloc/blocs.dart';
 
 class DrawerBar extends StatelessWidget {
   @override
@@ -9,11 +11,11 @@ class DrawerBar extends StatelessWidget {
       children: [
         IconButton(
           icon: Icon(Icons.list_sharp,
-            color: Theme.of(context).iconTheme.color,
-            size: 35
+              color: Theme.of(context).iconTheme.color,
+              size: 35
           ),
-          onPressed: () => Scaffold.of(context).openEndDrawer(),
-        )
+          onPressed: () => BlocProvider.of<DrawerBloc>(context).add(DrawerOpened()),
+        ),
       ]
     );
   }
