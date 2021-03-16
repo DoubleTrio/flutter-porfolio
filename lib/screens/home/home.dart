@@ -1,31 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_porfolio/components/components.dart';
-import 'package:flutter_porfolio/bloc/blocs.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../screen_entities.dart';
 import './components/components.dart';
-import 'dart:math';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
+class HomeScreen extends StatelessWidget {
+  final int screenId;
+  final double rotationZ;
+  final double scale;
+  final double xOffset;
+  final double yOffset;
+  final double borderOpacity;
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-
-
-  List<AnimatedScreen> reorderStack(List<AnimatedScreen> screens, int index) {
-    AnimatedScreen frontScreen = screens.removeAt(index);
-    return [...screens, frontScreen];
-  }
+  const HomeScreen({
+    required Key key,
+    required this.screenId,
+    required this.rotationZ,
+    required this.scale,
+    required this.xOffset,
+    required this.yOffset,
+    required this.borderOpacity
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return AnimatedScreen(
-      id: 1,
-      key: Key("1"),
+      key: Key("screen$screenId"),
+      rotationZ: rotationZ,
+      xOffset: xOffset,
+      yOffset: yOffset,
+      scale: scale,
+      id: screenId,
+      borderOpacity: borderOpacity,
       child: Scaffold(
         floatingActionButton: ThemeActionButton(),
         body: SafeArea(
@@ -46,9 +51,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
         ),
       ),
-      animationScreenRotation: -pi / 2.5,
-      xOffset: -200,
-      yOffset: -150,
     );
   }
 }
