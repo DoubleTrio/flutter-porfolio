@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_porfolio/components/components.dart';
 import 'dart:math';
 
-ScreenAnimationEntity blog =  ScreenAnimationEntity(
-  id: 1,
-  animationScreenRotation: -pi / 2.5,
-  animationXOffset: -180,
-  animationYOffset: -120,
+ScreenAnimationEntity blog = ScreenAnimationEntity(
+  id: 2,
   child: Scaffold(
     floatingActionButton: ThemeActionButton(),
     body: SafeArea(
@@ -22,4 +19,7 @@ ScreenAnimationEntity blog =  ScreenAnimationEntity(
       ),
     ),
   ),
+  animationScreenRotation: -pi / 2,
+  animationXOffset: -315,
+  animationYOffset: -250,
 );

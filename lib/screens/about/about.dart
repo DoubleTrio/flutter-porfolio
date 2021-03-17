@@ -4,7 +4,10 @@ import 'package:flutter_porfolio/components/components.dart';
 import 'dart:math';
 
 ScreenAnimationEntity about = ScreenAnimationEntity(
-  id: 2,
+  id: 1,
+  animationScreenRotation: -pi / 2.5,
+  animationXOffset: -180,
+  animationYOffset: -120,
   child: Scaffold(
     floatingActionButton: ThemeActionButton(),
     body: SafeArea(
@@ -19,8 +22,5 @@ ScreenAnimationEntity about = ScreenAnimationEntity(
       ),
     ),
   ),
-  animationScreenRotation: -pi / 2,
-  animationXOffset: -315,
-  animationYOffset: -250,
 );
 
