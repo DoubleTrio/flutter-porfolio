@@ -34,7 +34,7 @@ class App extends StatelessWidget {
               systemNavigationBarIconBrightness: Brightness.dark,
             ),
             child: Scaffold(
-              key: Key("Scaffold1"),
+              key: Key("MainScaffold"),
               body: BlocProvider<DrawerBloc>(
                 create: (_) => DrawerBloc(),
                 child: ScreenStack(),

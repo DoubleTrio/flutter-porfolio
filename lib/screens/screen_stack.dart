@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_porfolio/screens/custom_drawer.dart';
 import 'package:flutter_porfolio/components/components.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_porfolio/bloc/blocs.dart';
-import 'screen_entities.dart';
-
-import 'package:flutter_porfolio/screens/home/components/components.dart';
-import 'dart:math';
+import 'package:flutter_porfolio/models/models.dart';
+import 'custom_drawer.dart';
+import 'screens.dart';
 
 class ScreenStack extends StatefulWidget {
   @override
@@ -16,84 +14,13 @@ class ScreenStack extends StatefulWidget {
 class _ScreenStackState extends State<ScreenStack> with SingleTickerProviderStateMixin {
   bool _canBeDragged = false;
   final double maxSlide = 300.0;
+
   List<ScreenAnimationEntity> screenAnimationEntities = [
-    ScreenAnimationEntity(
-      id: 0,
-      animationScreenRotation: -pi / 3.5,
-      animationXOffset: -20,
-      animationYOffset: 0,
-      child: Scaffold(
-        floatingActionButton: ThemeActionButton(),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                DrawerBar(),
-                CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/building.jpg"),
-                    radius: 70
-                ),
-                NameHeader(),
-                ProfileDescription(),
-                ProjectBody()
-              ],
-            ),
-          ),
-        ),
-      ),
-    ),
-
-    ScreenAnimationEntity(
-      id: 1,
-      animationScreenRotation: -pi / 2.5,
-      animationXOffset: -180,
-      animationYOffset: -120,
-      child: Scaffold(
-        floatingActionButton: ThemeActionButton(),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                DrawerBar(),
-                CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/building.jpg"),
-                    radius: 70
-                ),
-                NameHeader(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    ),
-
-    ScreenAnimationEntity(
-      id: 2,
-      child: Scaffold(
-        floatingActionButton: ThemeActionButton(),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                DrawerBar(),
-                CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/building.jpg"),
-                    radius: 70
-                ),
-                NameHeader(),
-              ],
-            ),
-          ),
-        ),
-      ),
-      animationScreenRotation: -pi / 2,
-      animationXOffset: -315,
-      animationYOffset: -250,
-    )
+    blog,
+    about,
+    projects,
   ];
+
   late final AnimationController animationController = AnimationController(
     duration: const Duration(seconds: 0, milliseconds: 700),
     vsync: this

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_porfolio/models/models.dart';
-import 'project_card.dart';
+import 'work_card.dart';
 
 class CardScrollList extends StatelessWidget {
   final double itemHeight = 275;
