@@ -6,12 +6,8 @@ class ThemeActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    void _changeTheme() {
-      BlocProvider.of<ThemeBloc>(context).add(ThemeChanged());
-    }
-
     return FloatingActionButton(
-      onPressed: _changeTheme,
+      onPressed: () => BlocProvider.of<ThemeBloc>(context).add(ThemeChanged()),
       child: Icon(Icons.lightbulb_outline, color: Theme.of(context).scaffoldBackgroundColor),
       backgroundColor: Theme.of(context).floatingActionButtonTheme.foregroundColor,
     );

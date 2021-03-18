@@ -37,18 +37,18 @@ class _ScreenStackState extends State<ScreenStack> with SingleTickerProviderStat
     super.dispose();
   }
 
-  bool drawerClosed() {
+  bool isDrawerClosed() {
     return animationController.isDismissed;
   }
 
   void openDrawer() {
-    if (drawerClosed()) {
+    if (isDrawerClosed()) {
       animationController.forward();
     }
   }
 
   void closeDrawer() {
-    if (!drawerClosed()) {
+    if (!isDrawerClosed()) {
       animationController.reverse();
     }
   }
@@ -107,8 +107,8 @@ class _ScreenStackState extends State<ScreenStack> with SingleTickerProviderStat
         builder: (context, _) {
 
           double animationValue = animationController.value;
-          double scale = 1 - (animationValue * 0.55);
-          double borderOpacity = animationValue * 0.75;
+          double scale = 1 - (animationValue * 0.50);
+          double borderOpacity = animationValue * 1;
 
           List<AnimatedScreen> screenAnimations = screenAnimationEntities.map((entity) {
             double xOffset = entity.animationXOffset * animationValue;
@@ -116,7 +116,7 @@ class _ScreenStackState extends State<ScreenStack> with SingleTickerProviderStat
             double rotation = entity.animationScreenRotation * animationValue;
 
             return AnimatedScreen(
-              key: Key("screen${entity.id}"),
+              key: Key("animationScreen${entity.id}"),
               child: entity.child,
               id: entity.id,
               rotationZ: rotation,

@@ -20,6 +20,7 @@ class CardScrollList extends StatelessWidget {
           return Padding(
             padding: index == 0 ? EdgeInsets.symmetric(horizontal: 12.0) : EdgeInsets.only(right: 12),
             child: ProjectCard(
+              key: Key("work_card$index"),
               assetName: projectInfo.assetName,
               projectName: projectInfo.projectName,
               height: itemHeight,
