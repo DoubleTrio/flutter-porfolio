@@ -2,9 +2,10 @@ import 'package:flutter_porfolio/models/models.dart';
 import 'components/components.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:flutter_porfolio/models/models.dart';
 
 ScreenAnimationEntity projects =  ScreenAnimationEntity(
-  id: 0,
+  screenName: ScreenName.projectScreen,
   animationScreenRotation: -pi / 3.5,
   animationXOffset: -20,
   animationYOffset: 0,

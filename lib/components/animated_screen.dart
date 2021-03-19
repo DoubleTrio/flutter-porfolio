@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_porfolio/bloc/blocs.dart';
+import 'package:flutter_porfolio/models/models.dart';
 
 class AnimatedScreen extends StatelessWidget {
   final Widget child;
-  final int id;
+  final ScreenName screenName;
   final double rotationZ;
   final double scale;
   final double xOffset;
   final double yOffset;
   final double borderOpacity;
 
-  const AnimatedScreen({
+  AnimatedScreen({
     required Key key,
     required this.child,
-    required this.id,
+    required this.screenName,
     required this.rotationZ,
     required this.scale,
     required this.xOffset,
@@ -25,7 +26,7 @@ class AnimatedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(id)),
+      onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(screenName)),
       child: Transform(
         alignment: Alignment.centerRight,
         transform: Matrix4.identity()
@@ -36,8 +37,8 @@ class AnimatedScreen extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(
               color: Theme.of(context).primaryColor.withOpacity(borderOpacity),
-              width: 1
-            )
+              width: 1.5
+            ),
           ),
             child: child
         ),

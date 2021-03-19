@@ -2,9 +2,10 @@ import 'package:flutter_porfolio/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_porfolio/components/components.dart';
 import 'dart:math';
+import 'package:flutter_porfolio/models/models.dart';
 
 ScreenAnimationEntity blog = ScreenAnimationEntity(
-  id: 2,
+  screenName: ScreenName.blogScreen,
   child: Scaffold(
     floatingActionButton: ThemeActionButton(),
     body: SafeArea(

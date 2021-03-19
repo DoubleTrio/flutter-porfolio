@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_porfolio/models/models.dart';
 
 class DrawerState extends Equatable {
 
@@ -15,11 +16,12 @@ class DrawerOpen extends DrawerState {
   List<Object> get props => [];
 }
 
+// TODO change to enum
 class DrawerScreenSet extends DrawerState {
-  final int id;
+  final ScreenName screenName;
 
-  const DrawerScreenSet(this.id);
+  const DrawerScreenSet(this.screenName);
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [screenName];
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_porfolio/bloc/blocs.dart';
 import 'package:flutter_porfolio/components/components.dart';
+import 'package:flutter_porfolio/models/models.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -11,17 +12,17 @@ class CustomDrawer extends StatelessWidget {
     final List<DrawerTileEntity> navHeaders = [
       DrawerTileEntity(
         header: "My Projects",
-        onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(0)),
+        onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(ScreenName.projectScreen)),
         leading: Icon(Icons.article_outlined, size: iconSize),
       ),
       DrawerTileEntity(
         header: "About Myself",
-        onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(1)),
+        onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(ScreenName.aboutScreen)),
         leading: Icon(Icons.person_outline, size: iconSize),
       ),
       DrawerTileEntity(
         header: "Blog",
-        onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(2)),
+        onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(ScreenName.blogScreen)),
         leading: Icon(Icons.wysiwyg_rounded, size: iconSize),
       ),
       DrawerTileEntity(
@@ -38,7 +39,6 @@ class CustomDrawer extends StatelessWidget {
     return Container(
         color: theme.bottomAppBarColor,
         width: double.infinity,
-        padding: EdgeInsets.all(12),
         child: ListView.builder(
             itemCount: navHeaders.length,
             itemBuilder: (context, index) {
@@ -63,11 +63,4 @@ class CustomDrawer extends StatelessWidget {
         )
       );
   }
-}
-
-class DrawerTileEntity {
-  final String header;
-  final VoidCallback onTap;
-  final Widget leading;
-  const DrawerTileEntity({required this.header, required this.onTap, required this.leading });
 }

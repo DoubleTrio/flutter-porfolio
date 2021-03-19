@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_porfolio/models/models.dart';
+
 
 abstract class DrawerEvent extends Equatable {
   const DrawerEvent();
@@ -8,11 +10,11 @@ abstract class DrawerEvent extends Equatable {
 }
 
 class DrawerScreenSetted extends DrawerEvent {
-  final int id;
-  const DrawerScreenSetted(this.id);
+  final ScreenName screenName;
+  const DrawerScreenSetted(this.screenName);
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [screenName];
 }
 
 class DrawerOpened extends DrawerEvent {

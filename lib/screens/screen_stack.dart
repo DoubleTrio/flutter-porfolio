@@ -26,8 +26,8 @@ class _ScreenStackState extends State<ScreenStack> with SingleTickerProviderStat
     vsync: this
   );
 
-  List<ScreenAnimationEntity> reorderStack(List<ScreenAnimationEntity> screens, int id) {
-    ScreenAnimationEntity frontScreen = screens.firstWhere((screen) => screen.id == id);
+  List<ScreenAnimationEntity> reorderStack(List<ScreenAnimationEntity> screens, ScreenName screenName) {
+    ScreenAnimationEntity frontScreen = screens.firstWhere((screen) => screen.screenName == screenName);
     return [...screens, frontScreen];
   }
 
@@ -94,9 +94,9 @@ class _ScreenStackState extends State<ScreenStack> with SingleTickerProviderStat
         }
 
         if (state is DrawerScreenSet) {
-          bool isSameScreen = state.id == screenAnimationEntities.last.id;
+          bool isSameScreen = state.screenName == screenAnimationEntities.last.screenName;
           if (!isSameScreen) {
-            screenAnimationEntities = reorderStack(screenAnimationEntities, state.id);
+            screenAnimationEntities = reorderStack(screenAnimationEntities, state.screenName);
           }
           closeDrawer();
         }
@@ -116,9 +116,9 @@ class _ScreenStackState extends State<ScreenStack> with SingleTickerProviderStat
             double rotation = entity.animationScreenRotation * animationValue;
 
             return AnimatedScreen(
-              key: Key("animationScreen${entity.id}"),
+              key: Key("${entity.screenName}"),
               child: entity.child,
-              id: entity.id,
+              screenName: entity.screenName,
               rotationZ: rotation,
               scale: scale,
               xOffset: xOffset,

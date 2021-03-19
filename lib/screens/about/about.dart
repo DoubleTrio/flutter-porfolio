@@ -1,10 +1,11 @@
 import 'package:flutter_porfolio/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_porfolio/components/components.dart';
+import 'package:flutter_porfolio/models/models.dart';
 import 'dart:math';
 
 ScreenAnimationEntity about = ScreenAnimationEntity(
-  id: 1,
+  screenName: ScreenName.aboutScreen,
   animationScreenRotation: -pi / 2.5,
   animationXOffset: -180,
   animationYOffset: -120,

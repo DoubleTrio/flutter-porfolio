@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'drawer.dart';
-
+import 'package:flutter_porfolio/models/models.dart';
 
 class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
-  DrawerBloc() : super(DrawerScreenSet(0));
+  DrawerBloc() : super(DrawerScreenSet(ScreenName.projectScreen));
 
   @override
   Stream<DrawerState> mapEventToState(
@@ -16,7 +16,7 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
     }
 
     if (event is DrawerScreenSetted) {
-      yield* _mapDrawerScreenSettedToState(event.id);
+      yield* _mapDrawerScreenSettedToState(event.screenName);
     }
   }
 
@@ -24,7 +24,7 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
     yield DrawerOpen();
   }
 
-  Stream<DrawerState> _mapDrawerScreenSettedToState(int id) async* {
-    yield DrawerScreenSet(id);
+  Stream<DrawerState> _mapDrawerScreenSettedToState(ScreenName screenName) async* {
+    yield DrawerScreenSet(screenName);
   }
 }
