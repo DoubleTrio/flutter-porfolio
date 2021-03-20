@@ -11,8 +11,8 @@ class DrawerBar extends StatelessWidget {
       children: [
         IconButton(
           icon: Icon(Icons.list_sharp,
-              color: Theme.of(context).iconTheme.color,
-              size: 35
+            color: Theme.of(context).iconTheme.color,
+            size: 35
           ),
           onPressed: () => BlocProvider.of<DrawerBloc>(context).add(DrawerOpened()),
         ),

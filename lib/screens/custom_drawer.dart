@@ -11,22 +11,24 @@ class CustomDrawer extends StatelessWidget {
     final double iconSize = 28;
     final List<DrawerTileEntity> navHeaders = [
       DrawerTileEntity(
+        header: "About Me",
+        onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(ScreenName.aboutScreen)),
+        leading: Icon(Icons.person_outline, size: iconSize),
+      ),
+      DrawerTileEntity(
         header: "My Projects",
         onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(ScreenName.projectScreen)),
         leading: Icon(Icons.article_outlined, size: iconSize),
-      ),
-      DrawerTileEntity(
-        header: "About Myself",
-        onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(ScreenName.aboutScreen)),
-        leading: Icon(Icons.person_outline, size: iconSize),
       ),
       DrawerTileEntity(
         header: "Blog",
         onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(ScreenName.blogScreen)),
         leading: Icon(Icons.wysiwyg_rounded, size: iconSize),
       ),
+
+      // TODO - Open a pop-up for users to send a message
       DrawerTileEntity(
-        header: "Media",
+        header: "Message Me",
         onTap: () => {},
         leading: Icon(Icons.people_alt_outlined, size: iconSize)
       ),

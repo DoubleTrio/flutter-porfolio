@@ -30,7 +30,6 @@ ThemeData lightTheme = ThemeData(
   bottomAppBarColor: Color(0xFFEBEBEB),
   highlightColor: lightPrimaryColor,
   splashColor: lightPrimaryColor,
-  dividerColor: Colors.grey.shade600,
 );
 
 ThemeData darkTheme = ThemeData(
@@ -55,8 +54,7 @@ ThemeData darkTheme = ThemeData(
   backgroundColor: Colors.white10.withAlpha(12),
   brightness: Brightness.dark,
   accentColor: Colors.redAccent,
-  bottomAppBarColor: Color(0x99171717),
+  bottomAppBarColor: Color(0x99222222),
   highlightColor: darkPrimaryColor,
   splashColor: darkPrimaryColor,
-  dividerColor: Color(0xFF050505),
 );

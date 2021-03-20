@@ -2,13 +2,12 @@ import 'package:flutter_porfolio/models/models.dart';
 import 'components/components.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:flutter_porfolio/models/models.dart';
 
 ScreenAnimationEntity projects =  ScreenAnimationEntity(
   screenName: ScreenName.projectScreen,
-  animationScreenRotation: -pi / 3.5,
-  animationXOffset: -20,
-  animationYOffset: 0,
+  animationScreenRotation: -pi / 2.5,
+  animationXOffset: -180,
+  animationYOffset: -120,
   child: Scaffold(
     floatingActionButton: ThemeActionButton(),
     body: SafeArea(
@@ -17,12 +16,6 @@ ScreenAnimationEntity projects =  ScreenAnimationEntity(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             DrawerBar(),
-            CircleAvatar(
-                backgroundImage: AssetImage("assets/images/building.jpg"),
-                radius: 70
-            ),
-            NameHeader(),
-            ProfileDescription(),
             ProjectBody()
           ],
         ),

@@ -33,15 +33,12 @@ class App extends StatelessWidget {
               statusBarIconBrightness: state.themeMode == ThemeMode.dark ? Brightness.light : Brightness.dark,
               systemNavigationBarIconBrightness: Brightness.dark,
             ),
-            child: Scaffold(
-              key: Key("MainScaffold"),
-              body: BlocProvider<DrawerBloc>(
+            child: BlocProvider<DrawerBloc>(
                 create: (_) => DrawerBloc(),
                 child: ScreenStack(),
               )
             ),
-          )
-        );
+          );
       }
     );
   }

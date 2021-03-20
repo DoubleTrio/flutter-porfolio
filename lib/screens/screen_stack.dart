@@ -17,8 +17,8 @@ class _ScreenStackState extends State<ScreenStack> with SingleTickerProviderStat
 
   List<ScreenAnimationEntity> screenAnimationEntities = [
     blog,
-    about,
     projects,
+    about,
   ];
 
   late final AnimationController animationController = AnimationController(
@@ -94,8 +94,8 @@ class _ScreenStackState extends State<ScreenStack> with SingleTickerProviderStat
         }
 
         if (state is DrawerScreenSet) {
-          bool isSameScreen = state.screenName == screenAnimationEntities.last.screenName;
-          if (!isSameScreen) {
+          bool isSameScreenSelected = state.screenName == screenAnimationEntities.last.screenName;
+          if (!isSameScreenSelected) {
             screenAnimationEntities = reorderStack(screenAnimationEntities, state.screenName);
           }
           closeDrawer();
