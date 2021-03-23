@@ -4,7 +4,7 @@ import 'drawer.dart';
 import 'package:flutter_porfolio/models/models.dart';
 
 class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
-  DrawerBloc() : super(DrawerScreenSet(ScreenName.projectScreen));
+  DrawerBloc() : super(DrawerScreen(ScreenName.projectScreen));
 
   @override
   Stream<DrawerState> mapEventToState(
@@ -15,8 +15,8 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
       yield* _mapDrawerOpenedToState();
     }
 
-    if (event is DrawerScreenSetted) {
-      yield* _mapDrawerScreenSettedToState(event.screenName);
+    if (event is DrawerClosed) {
+      yield* _mapDrawerClosedToState(event.screenName);
     }
   }
 
@@ -24,7 +24,7 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
     yield DrawerOpen();
   }
 
-  Stream<DrawerState> _mapDrawerScreenSettedToState(ScreenName screenName) async* {
-    yield DrawerScreenSet(screenName);
+  Stream<DrawerState> _mapDrawerClosedToState(ScreenName screenName) async* {
+    yield DrawerScreen(screenName);
   }
 }

@@ -26,7 +26,7 @@ class AnimatedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerScreenSetted(screenName)),
+      onTap: () => BlocProvider.of<DrawerBloc>(context).add(DrawerClosed(screenName)),
       child: Transform(
         alignment: Alignment.centerRight,
         transform: Matrix4.identity()

@@ -13,7 +13,14 @@ void main() async {
     storageDirectory: await getTemporaryDirectory(),
   );
 
-  runApp(BlocProvider<ThemeBloc>(create: (_) => ThemeBloc(), child: App()));
+  runApp(MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<ThemeBloc>(create: (_) => ThemeBloc(), child: App());
+  }
 }
 
 class App extends StatelessWidget {
@@ -30,16 +37,19 @@ class App extends StatelessWidget {
           home: AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle(
               statusBarColor: Colors.transparent,
-              statusBarIconBrightness: state.themeMode == ThemeMode.dark ? Brightness.light : Brightness.dark,
+              statusBarIconBrightness: Brightness.dark,
               systemNavigationBarIconBrightness: Brightness.dark,
             ),
             child: BlocProvider<DrawerBloc>(
-                create: (_) => DrawerBloc(),
-                child: ScreenStack(),
-              )
+              key: Key("DrawerBlocProvider"),
+              create: (_) => DrawerBloc(),
+              child: ScreenStack(),
             ),
-          );
+          )
+        );
       }
     );
   }
 }
+
+

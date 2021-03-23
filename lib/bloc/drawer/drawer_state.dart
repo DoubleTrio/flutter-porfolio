@@ -17,10 +17,10 @@ class DrawerOpen extends DrawerState {
 }
 
 // TODO change to enum
-class DrawerScreenSet extends DrawerState {
+class DrawerScreen extends DrawerState {
   final ScreenName screenName;
 
-  const DrawerScreenSet(this.screenName);
+  const DrawerScreen(this.screenName);
 
   @override
   List<Object> get props => [screenName];

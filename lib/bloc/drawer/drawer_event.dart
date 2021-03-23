@@ -9,9 +9,9 @@ abstract class DrawerEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class DrawerScreenSetted extends DrawerEvent {
+class DrawerClosed extends DrawerEvent {
   final ScreenName screenName;
-  const DrawerScreenSetted(this.screenName);
+  const DrawerClosed(this.screenName);
 
   @override
   List<Object> get props => [screenName];

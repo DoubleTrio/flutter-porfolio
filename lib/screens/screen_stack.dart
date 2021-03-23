@@ -93,7 +93,7 @@ class _ScreenStackState extends State<ScreenStack> with SingleTickerProviderStat
           openDrawer();
         }
 
-        if (state is DrawerScreenSet) {
+        if (state is DrawerScreen) {
           bool isSameScreenSelected = state.screenName == screenAnimationEntities.last.screenName;
           if (!isSameScreenSelected) {
             screenAnimationEntities = reorderStack(screenAnimationEntities, state.screenName);
